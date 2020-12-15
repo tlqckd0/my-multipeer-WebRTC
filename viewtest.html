@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .video_cell{
+        position:relative;
+        display: inline-block;
+    }
+    .name{
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        padding: 10px;
+        background-color: rgba(200,200,200,0.5);
+    }
+    #myname{
+        width: 100px;
+    }
+</style>
+<body>
+    <div class="videos">
+        <div class="video_cell">
+            <video id="localVideo" autoplay width="480px"></video>
+            <span class="name">본인</span>
+        </div>
+        <!-- <div class="soundbar"><span class="currentVolume"></span></div> -->
+    </div>
+    <button id="videoBtn">VIDEO OFF</button>
+    <button id="audioBtn">AUDIO OFF</button>
+    <div>
+    </div>
+
+    <br />
+    <div id="connections"></div>
+
+    <div>
+        <h2>채팅</h2>
+        <ul id="chatList">
+
+        </ul>
+        <input id="myname" type="text" placeholder="니 이름" value="익명" /><button id="changeName">이름변경</button>
+        <input id="chatText" type="text" placeholder="채팅ㄱ"><button id="sendText">전송</button>
+    </div>
+
+</body>
+<script>
+    navigator.mediaDevices
+    .getUserMedia({
+        video: true,
+        audio: false,
+    })
+    .then(gotStream)
+    .catch((error) => console.error(error));
+
+function gotStream(stream) {
+    localVideo.srcObject = stream;
+}
+</script>
+</html>
